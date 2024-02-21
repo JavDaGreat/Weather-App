@@ -2,7 +2,8 @@ export const handleSearch = (
   city: string,
   setWeather: Function,
   setForecast: Function,
-  setShowSearch: Function
+  setShowSearch: Function,
+  onChangeCity?: Function
 ) => {
   if (!city) {
     setShowSearch(true);
@@ -26,6 +27,8 @@ export const handleSearch = (
         })
         .then((data) => {
           setForecast(data);
+          onChangeCity("");
+          setShowSearch(false);
         });
     } catch (error) {
       console.error("Error:", error);

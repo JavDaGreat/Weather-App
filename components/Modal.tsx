@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -33,7 +33,7 @@ const ModalScreen: FC<Props> = ({ children, isOpen, onClose }) => {
   }, [isOpen]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style= {styles.SafeArea}>
       <Modal transparent={true} visible={isOpen} onRequestClose={onClose}>
         <Animated.View
           style={[styles.modal, { transform: [{ translateX: slideAnim }] }]}>
@@ -51,15 +51,18 @@ const ModalScreen: FC<Props> = ({ children, isOpen, onClose }) => {
         </Animated.View>
       </Modal>
 
-      <View></View>
+
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  SafeArea: {
+    flex: 1,
+  },
   modal: {
     flex: 1,
-    marginTop: 10,
+    paddingTop:75,
     backgroundColor: "white",
   },
   header: {

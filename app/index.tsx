@@ -63,7 +63,7 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
-    handleSearch(city, setWeather, setForecast, setShowSearch);
+    handleSearch(city, setWeather, setForecast, setShowSearch,);
     onChangeCity("");
   }, []);
   for (let i = 0; i < 5; i++) {
@@ -94,7 +94,8 @@ const HomePage = () => {
             />
             <Pressable
               onPress={() =>
-                handleSearch(city, setWeather, setForecast, setShowSearch)
+                handleSearch(city, setWeather, setForecast, setShowSearch, onChangeCity
+                  )
               }>
               <Feather name="search" size={24} color="black" />
             </Pressable>
@@ -103,7 +104,9 @@ const HomePage = () => {
           <View style={styles.search}>
             <Pressable
               onPress={() =>
-                handleSearch(city, setWeather, setForecast, setShowSearch)
+                handleSearch(city, setWeather, setForecast, setShowSearch,
+                  onChangeCity
+                  )
               }>
               <Feather name="search" size={24} color="black" />
             </Pressable>
@@ -111,14 +114,14 @@ const HomePage = () => {
         )}
       </View>
       <View style={styles.main}>
-        <View style={styles.widget}>
         <Text style={styles.TextBig} onPress={() => {}}>
           {weather?.location?.name || "City"}
         </Text>
-
+        <View>
         {weather?.current?.condition?.text
           ? WeatherImages(100)[weather?.current?.condition?.text]
           : WeatherImages(100)["Mist"]}
+          </View>
 
         <View style={styles.temp}>
           <Text style={styles.TextBig}>
@@ -128,7 +131,6 @@ const HomePage = () => {
             °C
           </Text>
           <Text style={styles.TextMedium}>{weather?.current?.condition?.text}</Text>
-        </View>
         </View>
         <View style={styles.widgetContainer}>
           <View style={styles.widget}>
@@ -152,7 +154,7 @@ const HomePage = () => {
           <Text style={styles.TextMedium}>Daily Forecast</Text>
           <View style={styles.forecastContainer}>
             {forecast?.forecast?.forecastday?.map((item, index) => {
-              console.log(item.day.condition.text);
+             
               
               return(
               <View key={index} style={styles.widget}>
@@ -192,12 +194,16 @@ const styles = StyleSheet.create({
   },
   temp: {
     gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   main: {
+    width: "100%",
     marginTop: "5%",
     alignItems: "center",
     justifyContent: "center",
     gap: 30,
+   
   },
   widgetContainer: {
     width: "100%",
@@ -234,6 +240,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
+  wrapper:{
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    gap: 10,
+  }
 });
 
 export default HomePage;
