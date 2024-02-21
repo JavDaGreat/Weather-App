@@ -63,7 +63,7 @@ const HomePage = () => {
   ];
 
   useEffect(() => {
-    handleSearch(city, setWeather, setForecast, setShowSearch,);
+    handleSearch(city, setWeather, setForecast, setShowSearch,onChangeCity);
     onChangeCity("");
   }, []);
   for (let i = 0; i < 5; i++) {

@@ -3,7 +3,7 @@ export const handleSearch = (
   setWeather: Function,
   setForecast: Function,
   setShowSearch: Function,
-  onChangeCity?: Function
+  onChangeCity: Function
 ) => {
   if (!city) {
     setShowSearch(true);
