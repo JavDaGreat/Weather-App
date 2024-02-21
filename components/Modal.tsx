@@ -14,12 +14,14 @@ import {
 import WeatherCard from "./WeatherCard";
 
 type Props = {
-  children?: React.ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  svg: React.ReactElement;
+  temp: number;
+  name: string;
 };
 
-const ModalScreen: FC<Props> = ({ children, isOpen, onClose }) => {
+const ModalScreen: FC<Props> = ({svg , isOpen, onClose,temp,name }) => {
   const slideAnim = useRef(
     new Animated.Value(-Dimensions.get("window").width)
   ).current;
@@ -43,11 +45,9 @@ const ModalScreen: FC<Props> = ({ children, isOpen, onClose }) => {
               <Text>Back</Text>
             </Pressable>
 
-            <Feather name="plus" size={24} color="black" />
           </View>
-          <WeatherCard />
-          <WeatherCard />
-          <WeatherCard />
+          <WeatherCard name={name} temp={temp} svg={svg} />
+        
         </Animated.View>
       </Modal>
 

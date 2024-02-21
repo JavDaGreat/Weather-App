@@ -1,19 +1,22 @@
-import { Feather } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet } from "react-native";
-const WeatherCard = () => {
+type Props ={
+  name: string;
+  temp: number;
+  svg: React.ReactElement;
+
+}
+const WeatherCard:FC<Props> = ({name,temp,svg}) => {
   return (
     <View style={styles.container}>
       <View style={styles.cityRemove}>
-        <Ionicons name="remove-circle" size={24} color="black" />
-        <Text>Hello World</Text>
+        <Text style={styles.text}>{name}</Text>
       </View>
 
       <View style={styles.iconTemp}>
-        <Feather name="sun" size={24} color="black" />
-        <Text>6°C</Text>
+        {svg}
+        <Text style={styles.text} >{temp}°C</Text>
       </View>
     </View>
   );
@@ -36,13 +39,18 @@ const styles = StyleSheet.create({
   iconTemp: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
+    gap: 20,
+    justifyContent: "center",
   },
   cityRemove: {
     flexDirection: "row",
     alignItems: "center",
     gap: 20,
   },
+  text:{
+    fontSize: 24,
+    fontWeight: "600",
+  }
 });
 
 export default WeatherCard;

@@ -167,7 +167,10 @@ const HomePage = () => {
           </View>
         </View>
       </View>
-      <ModalScreen isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <ModalScreen isOpen={isOpen} onClose={() => setIsOpen(false)} name ={weather?.location?.name||"city"}
+      svg={WeatherImages(36)[weather?.current?.condition?.text || "Mist"]}
+      temp={weather?.current?.temp_c ?? NaN}
+      />
     </SafeAreaView>
   );
 };
@@ -219,13 +222,14 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   forecastContainer: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: "5%",
     paddingHorizontal: "5%",
-    width: "100%",
     alignItems: "center",
     gap: 10,
+   
   },
   input: {
     backgroundColor: "lightgrey",
