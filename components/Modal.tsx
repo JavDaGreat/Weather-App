@@ -10,6 +10,7 @@ import {
   Animated,
   Dimensions,
   Pressable,
+  Platform,
 } from "react-native";
 import WeatherCard from "./WeatherCard";
 
@@ -21,7 +22,7 @@ type Props = {
   name: string;
 };
 
-const ModalScreen: FC<Props> = ({svg , isOpen, onClose,temp,name }) => {
+const ModalScreen: FC<Props> = ({ svg, isOpen, onClose, temp, name }) => {
   const slideAnim = useRef(
     new Animated.Value(-Dimensions.get("window").width)
   ).current;
@@ -35,7 +36,7 @@ const ModalScreen: FC<Props> = ({svg , isOpen, onClose,temp,name }) => {
   }, [isOpen]);
 
   return (
-    <SafeAreaView style= {styles.SafeArea}>
+    <SafeAreaView style={styles.SafeArea}>
       <Modal transparent={true} visible={isOpen} onRequestClose={onClose}>
         <Animated.View
           style={[styles.modal, { transform: [{ translateX: slideAnim }] }]}>
@@ -44,14 +45,10 @@ const ModalScreen: FC<Props> = ({svg , isOpen, onClose,temp,name }) => {
               <Feather name="arrow-left" size={24} color="black" />
               <Text>Back</Text>
             </Pressable>
-
           </View>
           <WeatherCard name={name} temp={temp} svg={svg} />
-        
         </Animated.View>
       </Modal>
-
-
     </SafeAreaView>
   );
 };
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    paddingTop:75,
+    paddingTop: Platform.OS === "android" ? 15 : 75,
     backgroundColor: "white",
   },
   header: {
